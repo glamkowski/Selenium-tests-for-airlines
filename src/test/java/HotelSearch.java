@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class HotelSearch {
@@ -67,6 +69,16 @@ public class HotelSearch {
 
        driver.findElement(By.xpath("//button[text()=' Search']")).click();
 
+       List<WebElement> hotels = driver.findElements(By.xpath("//h4//b"));
+       Stream<WebElement> streamHotels = hotels.stream();
+       List<String> hotelList = streamHotels.map(e -> e.getText()).collect(Collectors.toList());
+
+        for (String hotel :hotelList) { System.out.println(hotel); }
+
+        Assert.assertEquals(hotelList.get(0), "Jumeirah Beach Hotel");
+        Assert.assertEquals(hotelList.get(1), "Oasis Beach Tower");
+        Assert.assertEquals(hotelList.get(2), "Rose Rayhaan Rotana");
+        Assert.assertEquals(hotelList.get(3), "Hyatt Regency Perth");
 
     }
 
