@@ -17,22 +17,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class HotelSearch {
-
-    public WebDriver driver;
-
-    @BeforeTest
-    public void setup () {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-
-        if (System.getProperty("os.name").contains("Mac")) {
-            chromeOptions.setBinary("/Applications/Google Chrome/Google Chrome.app/Contents/MacOS/Google Chrome");
-        }
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-
-    }
+public class HotelSearch extends TestBase {
 
     @Test
     public void HotelSearch () throws InterruptedException {
@@ -82,10 +67,6 @@ public class HotelSearch {
 
     }
 
-    @AfterTest
-    public void cleanUp () throws InterruptedException {
-        Thread.sleep(3000);
-        driver.quit();
-    }
+
 
 }
