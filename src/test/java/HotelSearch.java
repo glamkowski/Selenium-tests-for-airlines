@@ -11,7 +11,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 public class HotelSearch {
 
@@ -46,7 +48,25 @@ public class HotelSearch {
 
         driver.findElement(By.name("checkin")).click();
 
-        //td[@class='day ' and text()='12']
+       List<WebElement> d19 = driver.findElements(By.xpath("//td[@class='day ' and text()='19']"));
+       d19.stream()
+               .filter(e -> e.isDisplayed())
+               .findFirst()
+               .ifPresent(e -> e.click());
+
+       driver.findElement(By.cssSelector("input[name='travellers']")).click();
+
+       wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#adultInput")));
+       WebElement adultInput = driver.findElement(By.cssSelector("#adultInput"));
+       adultInput.clear();
+       adultInput.sendKeys("7");
+
+       WebElement childInput = driver.findElement(By.cssSelector("#childInput"));
+       childInput.clear();
+       childInput.sendKeys("3");
+
+       driver.findElement(By.xpath("//button[text()=' Search']")).click();
+
 
     }
 
