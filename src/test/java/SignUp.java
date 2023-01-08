@@ -41,8 +41,6 @@ public class SignUp extends TestBase {
         WebElement nameAfterSignup = driver.findElement(By.xpath("//h3[@class='RTL']"));
 
         Assert.assertTrue(nameAfterSignup.getText().contains(firstName + " " + lastName));
-
-
     }
 
 
