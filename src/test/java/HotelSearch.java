@@ -67,8 +67,19 @@ public class HotelSearch extends TestBase {
         Assert.assertEquals(hotelList.get(3), "Hyatt Regency Perth");
 
     }
-
+@Test
     public void shoudlNotFindHotel() {
+
+        driver.get("http://kurs-selenium.pl");
+        driver.findElement(By.xpath("//input[@name='checkin']")).click();
+        driver.findElements(By.xpath("//td[@class='day ' and text()='24']"))
+                .stream()
+                .filter(WebElement::isDisplayed)
+                .findFirst()
+                .ifPresent(WebElement::click);
+        driver.findElement(By.xpath("//button[text()=' Search']")).click();
+
+        Assert.assertEquals(driver.findElement(By.xpath("//h2[@class='text-center']")).getText(), "No Results Found");
 
     }
 
