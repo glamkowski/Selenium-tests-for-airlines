@@ -5,13 +5,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class SignUp extends TestBase {
 
 
     @Test
     public void shouldSignup() {
-
-        driver.get("http://www.kurs-selenium.pl");
 
         driver.findElements(By.xpath("//li[@id='li_myaccount']"))
                 .stream()
@@ -41,6 +43,45 @@ public class SignUp extends TestBase {
         WebElement nameAfterSignup = driver.findElement(By.xpath("//h3[@class='RTL']"));
 
         Assert.assertTrue(nameAfterSignup.getText().contains(firstName + " " + lastName));
+    }
+
+    @Test
+    public void shouldNotSignup() throws InterruptedException {
+        driver.findElements(By.xpath("//li[@id='li_myaccount']"))
+                .stream()
+                .filter(e -> e.isDisplayed())
+                .findFirst()
+                .ifPresent(e -> e.click());
+
+        driver.findElements(By.xpath("//a[@class='go-text-right' and text()='  Sign Up']"))
+                .stream()
+                .filter(e -> e.isDisplayed())
+                .findFirst()
+                .ifPresent(e -> e.click());
+
+        driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
+
+        String[] alerts = new String[]{
+                "The Email field is required.",
+                "The Password field is required.",
+                "The Password field is required.",
+                "The First name field is required.",
+                "The Last Name field is required."
+        };
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='resultsignup']//p")));
+        List<WebElement> alertsFromPage = driver.findElements(By.xpath("//div[@class='resultsignup']//p"));
+
+        if (alerts.length == alertsFromPage.size()) {
+            for (int i = 0; i < alertsFromPage.size(); i++) {
+                Assert.assertEquals(alerts[i], alertsFromPage.get(i).getText());
+                System.out.println(alerts[i] + " ---- " + alertsFromPage.get(i).getText());
+            }
+        } else {
+            Assert.assertEquals(alerts.length, alertsFromPage.size());
+            System.out.println("The form has too many alerts");
+        }
+
     }
 
 
