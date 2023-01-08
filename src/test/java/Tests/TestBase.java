@@ -1,3 +1,7 @@
+package Tests;
+
+import Pages.HomePage;
+import Pages.SearchResults;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,6 +19,9 @@ public class TestBase {
     public WebDriver driver;
     public WebDriverWait wait;
 
+    HomePage homePage;
+    SearchResults searchResults;
+
     @BeforeMethod
     public void setup() {
         WebDriverManager.chromedriver().setup();
@@ -23,10 +30,17 @@ public class TestBase {
         if (System.getProperty("os.name").contains("Mac")) {
             chromeOptions.setBinary("/Applications/Google Chrome/Google Chrome.app/Contents/MacOS/Google Chrome");
         }
-        this.driver = new ChromeDriver(chromeOptions);
-        this.driver.manage().window().maximize();
-        this.driver.get("http://www.kurs-selenium.pl");
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        driver = new ChromeDriver(chromeOptions);
+
+        homePage = new HomePage(driver);
+        searchResults = new SearchResults(driver);
+
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().window().maximize();
+        driver.get("http://www.kurs-selenium.pl");
+
 
     }
 
