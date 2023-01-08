@@ -20,45 +20,46 @@ import java.util.stream.Stream;
 public class HotelSearch extends TestBase {
 
     @Test
-    public void HotelSearch () throws InterruptedException {
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    public void shouldFindHotel() {
+
         driver.get("http://kurs-selenium.pl");
 
         driver.findElement(By.xpath("//span[@class='select2-chosen' and text()='Search by Hotel or City Name']")).click();
 
         driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("Dubai");
 
-
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='select2-match' and text()='Dubai']")));
         driver.findElement(By.xpath("//span[@class='select2-match' and text()='Dubai']")).click();
 
         driver.findElement(By.name("checkin")).click();
 
-       List<WebElement> d19 = driver.findElements(By.xpath("//td[@class='day ' and text()='19']"));
-       d19.stream()
-               .filter(e -> e.isDisplayed())
-               .findFirst()
-               .ifPresent(e -> e.click());
+        List<WebElement> d19 = driver.findElements(By.xpath("//td[@class='day ' and text()='19']"));
 
-       driver.findElement(By.cssSelector("input[name='travellers']")).click();
+        d19.stream()
+                .filter(e -> e.isDisplayed())
+                .findFirst()
+                .ifPresent(e -> e.click());
 
-       wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#adultInput")));
-       WebElement adultInput = driver.findElement(By.cssSelector("#adultInput"));
-       adultInput.clear();
-       adultInput.sendKeys("7");
+        driver.findElement(By.cssSelector("input[name='travellers']")).click();
 
-       WebElement childInput = driver.findElement(By.cssSelector("#childInput"));
-       childInput.clear();
-       childInput.sendKeys("3");
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#adultInput")));
+        WebElement adultInput = driver.findElement(By.cssSelector("#adultInput"));
+        adultInput.clear();
+        adultInput.sendKeys("7");
 
-       driver.findElement(By.xpath("//button[text()=' Search']")).click();
+        WebElement childInput = driver.findElement(By.cssSelector("#childInput"));
+        childInput.clear();
+        childInput.sendKeys("3");
 
-       List<WebElement> hotels = driver.findElements(By.xpath("//h4//b"));
-       Stream<WebElement> streamHotels = hotels.stream();
-       List<String> hotelList = streamHotels.map(e -> e.getText()).collect(Collectors.toList());
+        driver.findElement(By.xpath("//button[text()=' Search']")).click();
 
-        for (String hotel :hotelList) { System.out.println(hotel); }
+        List<WebElement> hotels = driver.findElements(By.xpath("//h4//b"));
+        Stream<WebElement> streamHotels = hotels.stream();
+        List<String> hotelList = streamHotels.map(e -> e.getText()).collect(Collectors.toList());
+
+        for (String hotel : hotelList) {
+            System.out.println(hotel);
+        }
 
         Assert.assertEquals(hotelList.get(0), "Jumeirah Beach Hotel");
         Assert.assertEquals(hotelList.get(1), "Oasis Beach Tower");
@@ -67,6 +68,9 @@ public class HotelSearch extends TestBase {
 
     }
 
+    public void shoudlNotFindHotel() {
+
+    }
 
 
 }

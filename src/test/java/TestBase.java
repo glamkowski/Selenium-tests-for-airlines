@@ -14,7 +14,7 @@ public class TestBase {
     public WebDriverWait wait;
 
     @BeforeTest
-    public void setup () {
+    public void setup() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
 
@@ -28,7 +28,7 @@ public class TestBase {
     }
 
     @AfterTest
-    public void cleanUp () throws InterruptedException {
+    public void cleanUp() throws InterruptedException {
         Thread.sleep(3000);
         driver.quit();
     }

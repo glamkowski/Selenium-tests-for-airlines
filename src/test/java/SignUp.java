@@ -9,7 +9,7 @@ public class SignUp extends TestBase {
 
 
     @Test
-    public void signUp () {
+    public void shouldSignup() {
 
         driver.get("http://www.kurs-selenium.pl");
 
@@ -42,7 +42,6 @@ public class SignUp extends TestBase {
 
         Assert.assertTrue(nameAfterSignup.getText().contains(firstName + " " + lastName));
     }
-
 
 
 }
