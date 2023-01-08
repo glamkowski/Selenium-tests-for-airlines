@@ -46,7 +46,7 @@ public class SignUp extends TestBase {
     }
 
     @Test
-    public void shouldNotSignup() throws InterruptedException {
+    public void shouldNotSignup() {
         driver.findElements(By.xpath("//li[@id='li_myaccount']"))
                 .stream()
                 .filter(e -> e.isDisplayed())

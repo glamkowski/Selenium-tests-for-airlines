@@ -3,7 +3,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import java.time.Duration;
@@ -13,7 +15,7 @@ public class TestBase {
     public WebDriver driver;
     public WebDriverWait wait;
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -21,16 +23,15 @@ public class TestBase {
         if (System.getProperty("os.name").contains("Mac")) {
             chromeOptions.setBinary("/Applications/Google Chrome/Google Chrome.app/Contents/MacOS/Google Chrome");
         }
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        driver.get("http://www.kurs-selenium.pl");
+        this.driver = new ChromeDriver(chromeOptions);
+        this.driver.manage().window().maximize();
+        this.driver.get("http://www.kurs-selenium.pl");
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
     }
 
-    @AfterTest
-    public void cleanUp() throws InterruptedException {
-        Thread.sleep(3000);
+    @AfterMethod
+    public void cleanUp() {
         driver.quit();
     }
 }

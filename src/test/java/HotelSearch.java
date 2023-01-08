@@ -22,8 +22,6 @@ public class HotelSearch extends TestBase {
     @Test
     public void shouldFindHotel() {
 
-        driver.get("http://kurs-selenium.pl");
-
         driver.findElement(By.xpath("//span[@class='select2-chosen' and text()='Search by Hotel or City Name']")).click();
 
         driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("Dubai");
@@ -70,7 +68,6 @@ public class HotelSearch extends TestBase {
 @Test
     public void shoudlNotFindHotel() {
 
-        driver.get("http://kurs-selenium.pl");
         driver.findElement(By.xpath("//input[@name='checkin']")).click();
         driver.findElements(By.xpath("//td[@class='day ' and text()='24']"))
                 .stream()
