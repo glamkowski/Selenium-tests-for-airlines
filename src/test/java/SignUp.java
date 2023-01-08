@@ -1,5 +1,8 @@
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SignUp extends TestBase {
@@ -22,8 +25,10 @@ public class SignUp extends TestBase {
                 .findFirst()
                 .ifPresent(e -> e.click());
 
-        driver.findElement(By.name("firstname")).sendKeys(new Faker().name().firstName());
-        driver.findElement(By.name("lastname")).sendKeys(new Faker().name().lastName());
+        String firstName = new Faker().name().firstName();
+        String lastName = new Faker().name().lastName();
+        driver.findElement(By.name("firstname")).sendKeys(firstName);
+        driver.findElement(By.name("lastname")).sendKeys(lastName);
         driver.findElement(By.name("phone")).sendKeys(new Faker().phoneNumber().cellPhone());
         driver.findElement(By.name("email")).sendKeys(new Faker().internet().emailAddress());
         String password = new Faker().internet().password();
@@ -32,6 +37,10 @@ public class SignUp extends TestBase {
 
         driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
 
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[@class='RTL']")));
+        WebElement nameAfterSignup = driver.findElement(By.xpath("//h3[@class='RTL']"));
+
+        Assert.assertTrue(nameAfterSignup.getText().contains(firstName + " " + lastName));
 
 
     }

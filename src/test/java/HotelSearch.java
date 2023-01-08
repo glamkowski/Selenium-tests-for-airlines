@@ -29,7 +29,7 @@ public class HotelSearch extends TestBase {
         driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("Dubai");
 
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='select2-match' and text()='Dubai']")));
         driver.findElement(By.xpath("//span[@class='select2-match' and text()='Dubai']")).click();
 
