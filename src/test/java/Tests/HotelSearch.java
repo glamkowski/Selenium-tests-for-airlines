@@ -2,6 +2,7 @@ package Tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.util.stream.Collectors;
 
 public class HotelSearch extends TestBase {
@@ -27,7 +28,7 @@ public class HotelSearch extends TestBase {
     }
 
     @Test
-    public void shouldNotFindHotel() {
+    public void shouldNotFindHotels() {
 
         homePage.setStartDate("14");
         homePage.setTravellers("1", "1");

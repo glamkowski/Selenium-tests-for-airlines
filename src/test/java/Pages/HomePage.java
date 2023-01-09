@@ -38,8 +38,14 @@ public class HomePage extends TestBase {
     @FindBy(xpath = "//button[text()=' Search']")
     WebElement searchButton;
 
-    @FindBy (xpath = "//h2[@class='text-center']")
+    @FindBy(xpath = "//h2[@class='text-center']")
     public WebElement noResultsFoundText;
+
+    @FindBy(xpath = "//li[@id='li_myaccount']")
+    List<WebElement> myAccountLink;
+
+    @FindBy(xpath = "//a[text()='  Sign Up']")
+    List<WebElement> signupLink;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -73,8 +79,21 @@ public class HomePage extends TestBase {
         searchButton.click();
     }
 
-    public String getTextFromElement (WebElement element) {
+    public String getTextFromElement(WebElement element) {
         return element.getText();
+    }
+
+    public void goToSignupForm() {
+        myAccountLink
+                .stream()
+                .filter(e -> e.isDisplayed())
+                .findFirst()
+                .ifPresent(e -> e.click());
+        signupLink
+                .stream()
+                .filter(e -> e.isDisplayed())
+                .findFirst()
+                .ifPresent(e -> e.click());
     }
 
 }
