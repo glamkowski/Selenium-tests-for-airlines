@@ -1,5 +1,6 @@
 package Tests;
 
+import Pages.AccountPage;
 import Pages.HomePage;
 import Pages.SearchResultsPage;
 import Pages.SignupPage;
@@ -20,8 +21,9 @@ public class TestBase {
 
     HomePage homePage;
     SearchResultsPage searchResults;
-
     SignupPage signupPage;
+
+    AccountPage accountPage;
 
     @BeforeMethod
     public void setup() {
@@ -38,9 +40,10 @@ public class TestBase {
         homePage = new HomePage(driver);
         searchResults = new SearchResultsPage(driver);
         signupPage = new SignupPage(driver);
+        accountPage = new AccountPage(driver);
 
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
         driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl");
 

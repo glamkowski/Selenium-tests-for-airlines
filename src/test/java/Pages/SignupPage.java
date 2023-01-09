@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class SignupPage {
 
     public SignupPage(WebDriver driver) {
@@ -34,6 +36,9 @@ public class SignupPage {
     @FindBy(xpath = "//button[text()=' Sign Up']")
     WebElement signupButton;
 
+    @FindBy(xpath = "//div[@class='resultsignup']//p")
+    List<WebElement> alerts;
+
     private void sendKeys(String value, WebElement element) {
         element.sendKeys(value);
         System.out.println(element.getTagName() + " set to " + value);
@@ -48,11 +53,11 @@ public class SignupPage {
     }
 
     public void setRandomPhone() {
-        sendKeys(new Faker().phoneNumber().cellPhone(), phoneInput);
+        sendKeys(new Faker().numerify("#########"), phoneInput);
     }
 
     public void setRandomEmail() {
-        sendKeys(new Faker().phoneNumber().cellPhone(), emailInput);
+        sendKeys(new Faker().internet().emailAddress(), emailInput);
     }
 
     public void setRandomPassword() {
@@ -63,5 +68,9 @@ public class SignupPage {
 
     public void clickSignupButton () {
         signupButton.click();
+    }
+
+    public List<WebElement> getAlertsList() {
+        return alerts;
     }
 }
