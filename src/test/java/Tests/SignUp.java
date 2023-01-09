@@ -53,6 +53,5 @@ public class SignUp extends TestBase {
             Assert.assertEquals(alerts.length, signupPage.getAlertsList().size());
             System.out.println("The form has too many alerts");
         }
-
     }
 }
