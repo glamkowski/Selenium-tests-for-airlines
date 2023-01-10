@@ -43,7 +43,7 @@ public class TestBase {
         accountPage = new AccountPage(driver);
 
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
         driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl");
 

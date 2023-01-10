@@ -1,15 +1,25 @@
 package Pages;
 
 import Tests.TestBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.text.Format;
+import java.util.Formatter;
 import java.util.List;
 
 
 public class HomePage extends TestBase {
+
+    public WebDriver driver;
+
+    public HomePage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
+    }
 
     @FindBy(xpath = "//span[@class='select2-chosen' and text()='Search by Hotel or City Name']")
     private WebElement searchArea;
@@ -20,8 +30,8 @@ public class HomePage extends TestBase {
     @FindBy(name = "checkin")
     public WebElement startDateButton;
 
-    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
-    public WebElement contextCityName;
+//    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
+//    public WebElement contextCityName;
 
     @FindBy(xpath = "//td[@class='day ']")
     List<WebElement> datesFromList;
@@ -47,16 +57,16 @@ public class HomePage extends TestBase {
     @FindBy(xpath = "//a[text()='  Sign Up']")
     List<WebElement> signupLink;
 
-    public HomePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
-
     public void setCity(String value) {
         searchArea.click();
         searchInput.clear();
         searchInput.sendKeys(value);
-        contextCityName.click();
+        String xpath = String.format("//span[@class='select2-match' and text()='%s']", value);
+        driver.findElement(By.xpath(xpath)).click();
     }
+
+    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
+    public WebElement contextCityName;
 
     public void setStartDate(String value) {
         startDateButton.click();
