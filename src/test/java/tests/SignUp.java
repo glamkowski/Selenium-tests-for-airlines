@@ -1,6 +1,6 @@
-package Tests;
+package tests;
 
-import Model.User;
+import model.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

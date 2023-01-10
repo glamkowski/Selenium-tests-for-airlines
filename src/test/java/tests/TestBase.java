@@ -1,9 +1,9 @@
-package Tests;
+package tests;
 
-import Pages.AccountPage;
-import Pages.HomePage;
-import Pages.SearchResultsPage;
-import Pages.SignupPage;
+import pages.AccountPage;
+import pages.HomePage;
+import pages.SearchResultsPage;
+import pages.SignupPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

@@ -1,8 +1,8 @@
-package Pages;
+package pages;
 
-import Tests.TestBase;
+import tests.TestBase;
 import com.github.javafaker.Faker;
-import Model.User;
+import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -86,7 +86,6 @@ public class SignupPage extends TestBase {
         signupButton.click();
         return new AccountPage(driver);
     }
-
 
     public List<WebElement> getAlertsList() {
         return alerts;

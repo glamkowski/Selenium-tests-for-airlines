@@ -1,6 +1,6 @@
-package Pages;
+package pages;
 
-import Tests.TestBase;
+import tests.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
