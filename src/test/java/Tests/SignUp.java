@@ -1,33 +1,24 @@
 package Tests;
 
-import Pages.AccountPage;
-import Pages.HomePage;
-import Pages.SignupPage;
-import Tests.TestBase;
-import com.github.javafaker.Faker;
-import model.User;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import Model.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class SignUp extends TestBase {
 
     @Test
     public void shouldSignup() {
 
-        homePage.goToSignupForm();
-        signupPage.setRandomFirstname();
-        signupPage.setRandomLastname();
-        signupPage.setRandomEmail();
-        signupPage.setRandomPhone();
-        signupPage.setRandomPassword();
-        signupPage.clickSignupButton();
+        String welcomeHead = homePage.goToSignupForm()
+                .setRandomFirstname()
+                .setRandomLastname()
+                .setRandomEmail()
+                .setRandomPhone()
+                .setRandomPassword()
+                .clickSignupButton()
+                .getHiHeader();
 
-        Assert.assertTrue(accountPage.getHiHeader().contains("Hi"));
+        Assert.assertTrue(welcomeHead.contains("Hi"));
 
     }
 

@@ -93,7 +93,7 @@ public class HomePage extends TestBase {
         return element.getText();
     }
 
-    public void goToSignupForm() {
+    public SignupPage goToSignupForm() {
         myAccountLink
                 .stream()
                 .filter(e -> e.isDisplayed())
@@ -104,6 +104,8 @@ public class HomePage extends TestBase {
                 .filter(e -> e.isDisplayed())
                 .findFirst()
                 .ifPresent(e -> e.click());
+
+        return new SignupPage(driver);
     }
 
 }

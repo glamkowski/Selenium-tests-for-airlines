@@ -22,7 +22,6 @@ public class TestBase {
     HomePage homePage;
     SearchResultsPage searchResults;
     SignupPage signupPage;
-
     AccountPage accountPage;
 
     @BeforeMethod
@@ -36,11 +35,10 @@ public class TestBase {
 
         driver = new ChromeDriver(chromeOptions);
 
-
+        accountPage = new AccountPage(driver);
         homePage = new HomePage(driver);
         searchResults = new SearchResultsPage(driver);
         signupPage = new SignupPage(driver);
-        accountPage = new AccountPage(driver);
 
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));

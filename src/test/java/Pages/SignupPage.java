@@ -1,8 +1,8 @@
 package Pages;
 
+import Tests.TestBase;
 import com.github.javafaker.Faker;
-import model.User;
-import org.openqa.selenium.By;
+import Model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,10 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class SignupPage {
+public class SignupPage extends TestBase {
 
     public SignupPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     @FindBy(name = "firstname")
@@ -45,39 +46,47 @@ public class SignupPage {
         System.out.println(element.getTagName() + " set to " + value);
     }
 
-    public void setRandomFirstname() {
+    public SignupPage setRandomFirstname() {
         sendKeys(new Faker().name().firstName(), fnameInput);
+        return this;
     }
 
-    public void setRandomLastname() {
+    public SignupPage setRandomLastname() {
         sendKeys(new Faker().name().lastName(), lnameInput);
+        return this;
     }
 
-    public void setRandomPhone() {
+    public SignupPage setRandomPhone() {
         sendKeys(new Faker().numerify("#########"), phoneInput);
+        return this;
     }
 
-    public void setRandomEmail() {
+    public SignupPage setRandomEmail() {
         sendKeys(new Faker().internet().emailAddress(), emailInput);
+        return this;
     }
 
-    public void setRandomPassword() {
+    public SignupPage setRandomPassword() {
         String password = new Faker().internet().password();
         sendKeys(password, passwordInput);
         sendKeys(password, confirmPasswordInput);
+        return this;
     }
 
-    public void clickSignupButton () {
-        signupButton.click();
-    }
-
-    public void fillUpSignupForm (User user) {
+    public SignupPage fillUpSignupForm (User user) {
         sendKeys(user.getFirstName(), fnameInput);
         sendKeys(user.getLastName(), lnameInput);
         sendKeys(user.getPhone(), phoneInput);
         sendKeys(user.getPassword(), passwordInput);
         sendKeys(user.getPassword(), confirmPasswordInput);
+        return this;
     }
+
+    public AccountPage clickSignupButton () {
+        signupButton.click();
+        return new AccountPage(driver);
+    }
+
 
     public List<WebElement> getAlertsList() {
         return alerts;
