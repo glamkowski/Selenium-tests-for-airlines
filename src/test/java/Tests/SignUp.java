@@ -5,6 +5,7 @@ import Pages.HomePage;
 import Pages.SignupPage;
 import Tests.TestBase;
 import com.github.javafaker.Faker;
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,6 +29,17 @@ public class SignUp extends TestBase {
 
         Assert.assertTrue(accountPage.getHiHeader().contains("Hi"));
 
+    }
+
+    @Test
+    public void shouldSignupManual() {
+
+        User user = new User("Oskar", "Testowy", "837627111", "oskar@oskar.os", "334422@A");
+        homePage.goToSignupForm();
+        signupPage.fillUpSignupForm(user);
+        signupPage.clickSignupButton();
+
+        Assert.assertEquals(signupPage.getAlertsList().get(0).getText(), "The Email field is required.");
     }
 
     @Test

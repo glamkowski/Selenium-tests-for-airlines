@@ -1,6 +1,7 @@
 package Pages;
 
 import com.github.javafaker.Faker;
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -68,6 +69,14 @@ public class SignupPage {
 
     public void clickSignupButton () {
         signupButton.click();
+    }
+
+    public void fillUpSignupForm (User user) {
+        sendKeys(user.getFirstName(), fnameInput);
+        sendKeys(user.getLastName(), lnameInput);
+        sendKeys(user.getPhone(), phoneInput);
+        sendKeys(user.getPassword(), passwordInput);
+        sendKeys(user.getPassword(), confirmPasswordInput);
     }
 
     public List<WebElement> getAlertsList() {
