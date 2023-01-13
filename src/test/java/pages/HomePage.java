@@ -1,5 +1,7 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import tests.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -55,23 +57,28 @@ public class HomePage extends TestBase {
     @FindBy(xpath = "//a[text()='  Sign Up']")
     List<WebElement> signupLink;
 
+    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
+    public WebElement contextCityName;
+
     public void setCity(String value) {
+        logger.info("Setting city " + value);
         searchArea.click();
         searchInput.clear();
         searchInput.sendKeys(value);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", value);
         driver.findElement(By.xpath(xpath)).click();
+        logger.info("Setting city " + value + " done");
     }
 
-    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
-    public WebElement contextCityName;
-
     public void setStartDate(String value) {
+        logger.info("Setting start date");
         startDateButton.click();
         datesFromList.stream().filter(e -> e.isDisplayed() && e.getText().equals(value)).findFirst().ifPresent(e -> e.click());
+        logger.info("Setting start date done");
     }
 
     public void setTravellers(String adults, String kids) {
+        logger.info("Setting travels as " + adults + " adults and" + kids + " kids");
         travellers.click();
 
         adultInput.click();
@@ -81,10 +88,14 @@ public class HomePage extends TestBase {
         childInput.click();
         childInput.clear();
         childInput.sendKeys(kids);
+        logger.info("Setting travels done");
+
     }
 
     public void clickSearchButton() {
+        logger.info("Clicking on the search button");
         searchButton.click();
+        logger.info("Clicking on the search button done");
     }
 
     public String getTextFromElement(WebElement element) {

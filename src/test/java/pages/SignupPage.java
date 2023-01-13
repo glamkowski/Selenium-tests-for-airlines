@@ -67,18 +67,22 @@ public class SignupPage extends TestBase {
     }
 
     public SignupPage setRandomPassword() {
+        logger.info("Setting random password");
         String password = new Faker().internet().password();
         sendKeys(password, passwordInput);
         sendKeys(password, confirmPasswordInput);
+        logger.info("Setting random password done");
         return this;
     }
 
     public SignupPage fillUpSignupForm (User user) {
+        logger.info("Filling up signup form");
         sendKeys(user.getFirstName(), fnameInput);
         sendKeys(user.getLastName(), lnameInput);
         sendKeys(user.getPhone(), phoneInput);
         sendKeys(user.getPassword(), passwordInput);
         sendKeys(user.getPassword(), confirmPasswordInput);
+        logger.info("Filling signup form done");
         return this;
     }
 

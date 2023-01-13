@@ -1,8 +1,10 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import model.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class SignUp extends TestBase {
 

@@ -11,7 +11,7 @@ public class HotelSearch extends TestBase {
     public void shouldFindHotels() {
 
         homePage.setCity("Dubai");
-        homePage.setStartDate("13");
+        homePage.setStartDate("16");
         homePage.setTravellers("3", "2");
         homePage.clickSearchButton();
 

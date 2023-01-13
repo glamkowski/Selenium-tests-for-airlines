@@ -1,5 +1,7 @@
 package tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.SearchResultsPage;
@@ -18,6 +20,7 @@ public class TestBase {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    public static final Logger logger = LogManager.getLogger();
 
     HomePage homePage;
     SearchResultsPage searchResults;
@@ -40,7 +43,6 @@ public class TestBase {
         searchResults = new SearchResultsPage(driver);
         signupPage = new SignupPage(driver);
 
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
         driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl");
@@ -49,8 +51,10 @@ public class TestBase {
 
     @AfterMethod
     public void cleanUp() throws InterruptedException {
+
         Thread.sleep(3000);
         driver.quit();
+
     }
 
 }
