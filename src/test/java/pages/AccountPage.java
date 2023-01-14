@@ -10,10 +10,8 @@ import tools.SeleniumHelper;
 
 public class AccountPage extends TestBase {
 
-    public WebDriver driver;
-
     @FindBy (css = "h3.RTL")
-    WebElement hiHeader;
+    public WebElement hiHeader;
 
     public AccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);

@@ -5,14 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import tests.TestBase;
 
 import java.time.Duration;
 
-public class SeleniumHelper extends TestBase {
+public class SeleniumHelper {
 
     public static void waitForElementExist(WebDriver driver, By locator) {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(12));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 

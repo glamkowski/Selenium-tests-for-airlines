@@ -20,28 +20,28 @@ public class SignupPage extends TestBase {
     }
 
     @FindBy(name = "firstname")
-    WebElement fnameInput;
+    private WebElement fnameInput;
 
     @FindBy(name = "lastname")
-    WebElement lnameInput;
+    private WebElement lnameInput;
 
     @FindBy(name = "phone")
-    WebElement phoneInput;
+    private WebElement phoneInput;
 
     @FindBy(name = "email")
-    WebElement emailInput;
+    private WebElement emailInput;
 
     @FindBy(name = "password")
-    WebElement passwordInput;
+    private WebElement passwordInput;
 
     @FindBy(name = "confirmpassword")
-    WebElement confirmPasswordInput;
+    private WebElement confirmPasswordInput;
 
     @FindBy(xpath = "//button[text()=' Sign Up']")
-    WebElement signupButton;
+    private WebElement signupButton;
 
     @FindBy(xpath = "//div[@class='resultsignup']//p")
-    List<WebElement> alerts;
+    private List<WebElement> alerts;
 
     private void sendKeys(String value, WebElement element) {
         element.sendKeys(value);

@@ -27,37 +27,37 @@ public class HomePage extends TestBase {
     private WebElement searchInput;
 
     @FindBy(name = "checkin")
-    public WebElement startDateButton;
+    private WebElement startDateButton;
 
 //    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
-//    public WebElement contextCityName;
+//    private WebElement contextCityName;
 
     @FindBy(xpath = "//td[@class='day ']")
-    List<WebElement> datesFromList;
+    private List<WebElement> datesFromList;
 
     @FindBy(css = "input[name='travellers']")
-    WebElement travellers;
+    private WebElement travellers;
 
     @FindBy(id = "adultInput")
-    WebElement adultInput;
+    private WebElement adultInput;
 
     @FindBy(id = "childInput")
-    WebElement childInput;
+    private WebElement childInput;
 
     @FindBy(xpath = "//button[text()=' Search']")
-    WebElement searchButton;
+    private WebElement searchButton;
 
     @FindBy(xpath = "//h2[@class='text-center']")
     public WebElement noResultsFoundText;
 
     @FindBy(xpath = "//li[@id='li_myaccount']")
-    List<WebElement> myAccountLink;
+    private List<WebElement> myAccountLink;
 
     @FindBy(xpath = "//a[text()='  Sign Up']")
-    List<WebElement> signupLink;
+    private List<WebElement> signupLink;
 
     @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
-    public WebElement contextCityName;
+    private WebElement contextCityName;
 
     public void setCity(String value) {
         logger.info("Setting city " + value);
