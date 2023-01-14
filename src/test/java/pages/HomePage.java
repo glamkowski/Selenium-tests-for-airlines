@@ -1,7 +1,5 @@
 package pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import tests.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,12 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
 public class HomePage extends TestBase {
-
-    public WebDriver driver;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -81,6 +79,11 @@ public class HomePage extends TestBase {
         logger.info("Setting travels as " + adults + " adults and" + kids + " kids");
         travellers.click();
 
+        try { Thread.sleep(3000); }
+        catch (Exception e) {
+
+        }
+
         adultInput.click();
         adultInput.clear();
         adultInput.sendKeys(adults);
@@ -115,6 +118,13 @@ public class HomePage extends TestBase {
                 .ifPresent(e -> e.click());
 
         return new SignupPage(driver);
+    }
+
+    public String getDateInNthDays (Integer days) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("DD");
+        Integer startDate = Integer.parseInt(dateTimeFormatter.format(LocalDateTime.now()));
+        startDate += days;
+        return  startDate.toString();
     }
 
 }

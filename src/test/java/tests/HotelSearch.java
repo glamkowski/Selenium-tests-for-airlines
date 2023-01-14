@@ -3,6 +3,10 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class HotelSearch extends TestBase {
@@ -11,7 +15,7 @@ public class HotelSearch extends TestBase {
     public void shouldFindHotels() {
 
         homePage.setCity("Dubai");
-        homePage.setStartDate("16");
+        homePage.setStartDate(homePage.getDateInNthDays(2));
         homePage.setTravellers("3", "2");
         homePage.clickSearchButton();
 
@@ -30,12 +34,10 @@ public class HotelSearch extends TestBase {
     @Test
     public void shouldNotFindHotels() {
 
-        homePage.setStartDate("14");
+        homePage.setStartDate(homePage.getDateInNthDays(2));
         homePage.setTravellers("1", "1");
         homePage.clickSearchButton();
         Assert.assertEquals(homePage.getTextFromElement(homePage.noResultsFoundText), "No Results Found");
 
     }
-
-
 }
