@@ -3,10 +3,6 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class HotelSearch extends TestBase {

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tools.SeleniumHelper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -64,6 +65,7 @@ public class HomePage extends TestBase {
         searchInput.clear();
         searchInput.sendKeys(value);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", value);
+        SeleniumHelper.waitForElementExist(driver, By.xpath(xpath));
         driver.findElement(By.xpath(xpath)).click();
         logger.info("Setting city " + value + " done");
     }

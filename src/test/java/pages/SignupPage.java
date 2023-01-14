@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import tests.TestBase;
 import com.github.javafaker.Faker;
 import model.User;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tools.SeleniumHelper;
 
 import java.util.List;
 
@@ -92,6 +94,7 @@ public class SignupPage extends TestBase {
     }
 
     public List<WebElement> getAlertsList() {
+        SeleniumHelper.waitForNotEmptyList(driver, By.xpath("//div[@class='resultsignup']//p"));
         return alerts;
     }
 }

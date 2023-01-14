@@ -2,18 +2,13 @@ package tests;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.SearchResultsPage;
 import pages.SignupPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import tools.DriverCreator;
 import tools.PropertiesLoader;
 
@@ -35,7 +30,6 @@ public class TestBase {
         String browserName = PropertiesLoader.getProperty("browser.name");
 
         driver = DriverCreator.getDriver("chrome");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
         driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl");
 
