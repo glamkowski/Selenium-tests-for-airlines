@@ -13,7 +13,6 @@ import tools.DriverCreator;
 import tools.PropertiesLoader;
 
 import java.io.IOException;
-import java.time.Duration;
 
 public class TestBase {
 

@@ -4,10 +4,7 @@ import model.User;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.HomePage;
 import tools.ExcelReader;
-
-import javax.swing.*;
 import java.io.IOException;
 
 public class SignUp extends TestBase {

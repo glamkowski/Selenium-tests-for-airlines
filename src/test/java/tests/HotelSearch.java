@@ -1,11 +1,7 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import tools.ExcelReader;
-
-import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class HotelSearch extends TestBase {
