@@ -35,14 +35,10 @@ public class ExcelReader {
         short countColumns = row.getLastCellNum();
         DataFormatter formatter = new DataFormatter();
 
-        Cell cell = row.getCell(2);
-        String j_username = formatter.formatCellValue(cell);
-        System.out.println(j_username);
-
-        for (int i = 0; i <= countRows; i++) {
-            System.out.println(formatter.formatCellValue(row.getCell(0)));
-            System.out.println(formatter.formatCellValue(row.getCell(1)));
-            System.out.println(formatter.formatCellValue(row.getCell(2)));
+        for (int i = 1; i <= countRows; i++) {
+            System.out.println(formatter.formatCellValue(sheet.getRow(i).getCell(0)));
+            System.out.println(formatter.formatCellValue(sheet.getRow(i).getCell(1)));
+            System.out.println(formatter.formatCellValue(sheet.getRow(i).getCell(2)));
         }
     }
 
