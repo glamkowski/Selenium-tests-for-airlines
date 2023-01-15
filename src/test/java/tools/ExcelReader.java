@@ -11,11 +11,7 @@ import java.io.IOException;
 
 public class ExcelReader {
 
-    public static void main(String[] args) throws IOException {
-        getDataFromExcel();
-    }
-
-    public static void getDataFromExcel () throws IOException {
+    public static String[][] getDataFromExcel() throws IOException {
 
         File file = new File("src/test/resources/dane.xls");
 
@@ -24,22 +20,21 @@ public class ExcelReader {
         }
 
         FileInputStream fileInputStream = new FileInputStream(file);
-
         Workbook workbook = new HSSFWorkbook(fileInputStream);
-
         Sheet sheet = workbook.getSheetAt(0);
-
         Row row = sheet.getRow(1);
-
         Integer countRows = sheet.getLastRowNum();
         short countColumns = row.getLastCellNum();
         DataFormatter formatter = new DataFormatter();
+        String[][] dataFromExcel = new String[countRows][countColumns];
+
 
         for (int i = 1; i <= countRows; i++) {
-            System.out.println(formatter.formatCellValue(sheet.getRow(i).getCell(0)));
-            System.out.println(formatter.formatCellValue(sheet.getRow(i).getCell(1)));
-            System.out.println(formatter.formatCellValue(sheet.getRow(i).getCell(2)));
+            for (int j = 0; j < countColumns; j++) {
+                dataFromExcel[i - 1][j] = formatter.formatCellValue(sheet.getRow(i).getCell(j));
+            }
         }
+        return dataFromExcel;
     }
 
 
