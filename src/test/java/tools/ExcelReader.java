@@ -17,7 +17,7 @@ public class ExcelReader {
 
     public static void getDataFromExcel () throws IOException {
 
-        File file = new File("src/test/resources/dane2.xls");
+        File file = new File("src/test/resources/dane.xls");
 
         if (!file.exists()) {
             file.createNewFile();
@@ -36,7 +36,7 @@ public class ExcelReader {
         DataFormatter formatter = new DataFormatter();
 
         Cell cell = row.getCell(2);
-        String j_username = formatter.formatCellValue(cell); //Returns the formatted value of a cell as a String regardless of the cell type.
+        String j_username = formatter.formatCellValue(cell);
         System.out.println(j_username);
 
         for (int i = 0; i <= countRows; i++) {
