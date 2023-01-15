@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import tests.TestBase;
 import com.github.javafaker.Faker;
 import model.User;
@@ -8,8 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tools.ExcelReader;
 import tools.SeleniumHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class SignupPage extends TestBase {
@@ -76,7 +80,16 @@ public class SignupPage extends TestBase {
         logger.info("Setting random password done");
         return this;
     }
-
+    public SignupPage signupUsingFromExcelData (String fristname, String lastname, String phone, String password) {
+        logger.info("Filling up signup form using excel sheet");
+        sendKeys(fristname, fnameInput);
+        sendKeys(lastname, lnameInput);
+        sendKeys(phone, phoneInput);
+        sendKeys(password, passwordInput);
+        sendKeys(password, confirmPasswordInput);
+        logger.info("Filling signup form done");
+        return this;
+    }
     public SignupPage fillUpSignupForm (User user) {
         logger.info("Filling up signup form");
         sendKeys(user.getFirstName(), fnameInput);

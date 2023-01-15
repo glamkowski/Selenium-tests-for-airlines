@@ -39,17 +39,4 @@ public class HotelSearch extends TestBase {
         Assert.assertEquals(homePage.getTextFromElement(homePage.noResultsFoundText), "No Results Found");
 
     }
-
-    @DataProvider (name = "dateFromExcel")
-    public String[][] getDataFromExcel() throws IOException {
-        return ExcelReader.getDataFromExcel();
-    }
-
-    @Test (dataProvider = "dateFromExcel")
-    public void testingWithDataFromExcel (String name, String lastname, String phone) {
-        System.out.println(name + " -- " + lastname + " -- " + phone);
-    }
-
-
-
 }

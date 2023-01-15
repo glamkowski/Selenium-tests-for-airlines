@@ -13,19 +13,22 @@ public class ExcelReader {
 
     public static String[][] getDataFromExcel() throws IOException {
 
-        File file = new File("src/test/resources/dane.xls");
-
-        if (!file.exists()) {
-            file.createNewFile();
-        }
+        File file = new File("src/test/resources/excel_data.xls");
 
         FileInputStream fileInputStream = new FileInputStream(file);
+
         Workbook workbook = new HSSFWorkbook(fileInputStream);
+
         Sheet sheet = workbook.getSheetAt(0);
+
         Row row = sheet.getRow(1);
+
         Integer countRows = sheet.getLastRowNum();
+
         short countColumns = row.getLastCellNum();
+
         DataFormatter formatter = new DataFormatter();
+
         String[][] dataFromExcel = new String[countRows][countColumns];
 
 
@@ -34,8 +37,9 @@ public class ExcelReader {
                 dataFromExcel[i - 1][j] = formatter.formatCellValue(sheet.getRow(i).getCell(j));
             }
         }
-        return dataFromExcel;
-    }
 
+        return dataFromExcel;
+
+    }
 
 }

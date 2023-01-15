@@ -2,7 +2,13 @@ package tests;
 
 import model.User;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import tools.ExcelReader;
+
+import javax.swing.*;
+import java.io.IOException;
 
 public class SignUp extends TestBase {
 
@@ -30,6 +36,19 @@ public class SignUp extends TestBase {
         signupPage.fillUpSignupForm(user);
         signupPage.clickSignupButton();
 
+        Assert.assertEquals(signupPage.getAlertsList().get(0).getText(), "The Email field is required.");
+    }
+
+    @DataProvider(name = "dataFromExcel")
+    public String[][] dataProviderForSignup () throws IOException {
+        return ExcelReader.getDataFromExcel();
+    }
+
+    @Test(dataProvider = "dataFromExcel")
+    public void shouldNotSignupUsingDataFromExcel (String fristname, String lastname, String phone, String password) {
+        homePage.goToSignupForm();
+        signupPage.signupUsingFromExcelData(fristname, lastname, phone, password);
+        signupPage.clickSignupButton();
         Assert.assertEquals(signupPage.getAlertsList().get(0).getText(), "The Email field is required.");
     }
 
