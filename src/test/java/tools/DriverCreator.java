@@ -11,35 +11,34 @@ public class DriverCreator {
 
     public static WebDriver getDriver(String browser) {
 
+        if (browser.equals("chrome")) {
 
-        if (browser == "chrome") {
+            return getchromeDriver();
 
-            WebDriverManager.chromedriver();
-
-            ChromeOptions chromeOptions = new ChromeOptions();
-
-            if (System.getProperty("os.name").contains("Mac")) {
-                chromeOptions.setBinary("/Applications/Google Chrome/Google Chrome.app/Contents/MacOS/Google Chrome");
-            }
-
-            return new ChromeDriver(chromeOptions);
-
-        }
-
-        else if (browser == "edge") {
+        } else if (browser.equals("edge")) {
             WebDriverManager.edgedriver().setup();
             return new EdgeDriver();
-        }
-
-        else if (browser == "safari") {
+        } else if (browser.equals("safari")) {
             WebDriverManager.safaridriver().setup();
             return new SafariDriver();
         }
 
-        WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+        return getchromeDriver();
 
     }
 
+    public static ChromeDriver getchromeDriver() {
+
+        WebDriverManager.chromedriver();
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+
+        if (System.getProperty("os.name").contains("Mac")) {
+            chromeOptions.setBinary("/Applications/Google Chrome/Google Chrome.app/Contents/MacOS/Google Chrome");
+        }
+
+        return new ChromeDriver(chromeOptions);
+
+    }
 
 }
