@@ -1,5 +1,7 @@
 package tests;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.stream.Collectors;
@@ -9,9 +11,14 @@ public class HotelSearch extends TestBase {
     @Test
     public void shouldFindHotels() {
 
+        ExtentTest test = extentReports.createTest("Should find hotel");
+
         homePage.setCity("Dubai");
+        test.log(Status.PASS, "Setting city done");
         homePage.setStartDate(homePage.getDateInNthDays(2));
+        test.log(Status.PASS, "Setting start date done");
         homePage.setTravellers("3", "2");
+        test.log(Status.PASS, "Setting travellers done");
         homePage.clickSearchButton();
 
         Assert.assertEquals(searchResults.getHotelNames()
@@ -24,15 +31,22 @@ public class HotelSearch extends TestBase {
                 .filter(e -> e.equals("Hyatt Regency Perth"))
                 .collect(Collectors.toList()).get(0), "Hyatt Regency Perth");
 
+        test.log(Status.PASS, "Assertions passed");
+
     }
 
     @Test
     public void shouldNotFindHotels() {
 
+        ExtentTest test = extentReports.createTest("Should not find hotels");
+
         homePage.setStartDate(homePage.getDateInNthDays(2));
+        test.log(Status.PASS, "Setting start date done");
         homePage.setTravellers("1", "1");
+        test.log(Status.PASS, "Setting travellers done");
         homePage.clickSearchButton();
         Assert.assertEquals(homePage.getTextFromElement(homePage.noResultsFoundText), "No Results Found");
+        test.log(Status.PASS, "Assertions done");
 
     }
 }

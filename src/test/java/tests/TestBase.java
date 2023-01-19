@@ -1,6 +1,7 @@
 package tests;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,13 +30,9 @@ public class TestBase {
     AccountPage accountPage;
     ExtentHtmlReporter htmlReporter;
     ExtentReports extentReports;
-
     @BeforeSuite
     public void beforeSuite() {
-        File file = new File("src/java/recources/raport.html");
-
-        htmlReporter = new ExtentHtmlReporter(file);
-
+        htmlReporter = new ExtentHtmlReporter("src/test/resources/raport.html");
         extentReports = new ExtentReports();
         extentReports.attachReporter(htmlReporter);
     }
