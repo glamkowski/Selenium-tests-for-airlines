@@ -20,8 +20,8 @@ public class SeleniumHelper {
         webDriverWait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void waitForNotEmptyList(WebDriver driver, By locator) {
+    public static void waitForElemetsToBeVisible(WebDriver driver, By locator) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(12));
-        webDriverWait.until(browser -> browser.findElements(locator).size() > 0);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 }

@@ -107,7 +107,7 @@ public class SignupPage extends TestBase {
     }
 
     public List<WebElement> getAlertsList() {
-        SeleniumHelper.waitForNotEmptyList(driver, By.xpath("//div[@class='resultsignup']//p"));
+        SeleniumHelper.waitForElemetsToBeVisible(driver, By.xpath("//div[@class='resultsignup']//p"));
         return alerts;
     }
 }
