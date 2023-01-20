@@ -1,8 +1,7 @@
 package tests;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -28,19 +27,18 @@ public class TestBase {
     SearchResultsPage searchResults;
     SignupPage signupPage;
     AccountPage accountPage;
-    ExtentHtmlReporter htmlReporter;
-    ExtentReports extentReports;
+    ExtentReports extent;
+    ExtentSparkReporter spark;
     @BeforeSuite
     public void beforeSuite() {
-        htmlReporter = new ExtentHtmlReporter("src/test/resources/raport.html");
-        extentReports = new ExtentReports();
-        extentReports.attachReporter(htmlReporter);
+        extent = new ExtentReports();
+        spark = new ExtentSparkReporter("src/test/resources/raport.html");
+        extent.attachReporter(spark);
     }
 
     @AfterSuite
     public void afterSuite () {
-        htmlReporter.flush();
-        extentReports.flush();
+        extent.flush();
     }
 
     @BeforeMethod

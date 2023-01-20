@@ -1,17 +1,23 @@
 package tests;
 
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tools.SeleniumHelper;
+
+import java.io.IOException;
 import java.util.stream.Collectors;
+
 
 public class HotelSearch extends TestBase {
 
     @Test
     public void shouldFindHotels() {
 
-        ExtentTest test = extentReports.createTest("Should find hotel");
+        ExtentTest test = extent.createTest("Should find hotel");
 
         homePage.setCity("Dubai");
         test.log(Status.PASS, "Setting city done");
@@ -36,9 +42,9 @@ public class HotelSearch extends TestBase {
     }
 
     @Test
-    public void shouldNotFindHotels() {
+    public void shouldNotFindHotels() throws IOException {
 
-        ExtentTest test = extentReports.createTest("Should not find hotels");
+        ExtentTest test = extent.createTest("Should not find hotels");
 
         homePage.setStartDate(homePage.getDateInNthDays(2));
         test.log(Status.PASS, "Setting start date done");
@@ -46,7 +52,6 @@ public class HotelSearch extends TestBase {
         test.log(Status.PASS, "Setting travellers done");
         homePage.clickSearchButton();
         Assert.assertEquals(homePage.getTextFromElement(homePage.noResultsFoundText), "No Results Found");
-        test.log(Status.PASS, "Assertions done");
-
+        test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromPath(SeleniumHelper.getScreenshot(driver)).build());
     }
 }
